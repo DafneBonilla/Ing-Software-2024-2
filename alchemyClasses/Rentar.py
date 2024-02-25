@@ -20,7 +20,7 @@ class Rentar(db.Model):
     '''
     Function to create a rentar object
     '''
-    def __init__(self, id_usuario, id_pelicula, fecha_renta=date.today(), dias_renta=5, estatus=False):
+    def __init__(self, id_usuario, id_pelicula, fecha_renta=date.today(), dias_renta = 5, estatus = False):
         self.idUsuario = id_usuario
         self.idPelicula = id_pelicula
         self.fecha_renta = fecha_renta
