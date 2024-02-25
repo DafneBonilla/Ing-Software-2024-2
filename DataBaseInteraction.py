@@ -90,17 +90,61 @@ def filter_last_name(ending):
 '''
 Function to change the gender of a movie
 '''
-def change_movie_genre(movie, genre):
+def change_movie_gender(movie, gender):
+    connection = connect_to_database()
+    try:
+        with connection.cursor() as cursor:
+            sql_change = "UPDATE movies SET gender = %s WHERE name = %s"
+            rows_affected = cursor.execute(sql_change, (gender, movie))
+            if rows_affected > 0:
+                connection.commit()
+                print("Gender changed successfully!")
+            else:
+                print("Movie not found!")
+    finally:
+        connection.close()
 
+'''
+Function to delete old rentals
+'''
+def delete_old_rentals():
+    connection = connect_to_database()
+    try:
+        with connection.cursor() as cursor:
+            sql_delete_rentals = """
+                            DELETE FROM rentar
+                            WHERE fecha_renta < DATE_SUB(NOW(), INTERVAL 4 DAY)
+                        """
+            deleted = cursor.execute(sql_delete_rentals)
+            connection.commit()  
+            print(f"Rentals deleted: {deleted}")
+    finally:
+        connection.close()
 
+'''
+Function to execute the functions lol
+'''
+def execute_functions():
+    print("PyMySql Functions | First Exercise")
+    # Insert records
+    insert_records()
 
-# Perform functions
-print("PyMySql Functions")
-insert_records()
-last_name_end = input("Enter the ending of the last name to search: ")
-filter_last_name(last_name_end)
-movie_c = input("Enter the name of the movie to change: ")
-genre_c = input("Enter the new genre of the movie: ")
-change_movie_genre(movie_c, genre_c)
-delete_old_rentals()
-print("End of PyMySql functions")
+    # Prompt user for last name ending
+    ending = input("Enter the ending of the last name to search: ")
+
+    # Filter users by last name
+    filter_last_name(ending)
+
+    # Prompt user for movie name and new genre
+    movie_example = input("Enter the name of the movie to change: ")
+    gender_example = input("Enter the new genre of the movie: ")
+    # Change movie genre
+    change_movie_gender(movie_example, gender_example)
+
+    # Delete old rentals
+    delete_old_rentals()
+
+    print("Functions executed successfully!")
+
+# Execute functions
+execute_functions()
