@@ -31,36 +31,36 @@ def insert_records():
             
             # Selecting userId and movieId
             cursor.execute("SELECT idUsuario FROM usarios LIMIT 1")
-            user_id = cursor.fetchone()['idUsuario']
+            idUsuario = cursor.fetchone()['idUsuario']
             cursor.execute("SELECT idPelicula FROM peliculas LIMIT 1")
-            movie_id = cursor.fetchone()['idPelicula']
+            idPelicula = cursor.fetchone()['idPelicula']
             
             # Loop for multiple inserts
             for _ in range(3):  # Inserting 3 records
                 random_num = random.randint(0, 1000)
                 user = f'User{random_num}'
                 random_num = random.randint(0, 1000)
-                firstLastName = f'FirstLastName{random_num}'
+                apPat = f'ApPat{random_num}'
                 random_num = random.randint(0, 1000)
-                secondLastName = f'SecondLastName{random_num}'
+                apMat = f'ApMat{random_num}'
                 random_num = random.randint(0, 1000)
                 # password = sha256(cipher(password)).hexdigest() version with cryptoUtils
                 password = f'password{random_num}'
                 email = f'{user}@ciencias.unam.mx'
                 
                 # Insert user record
-                cursor.execute(sql_usarios, (user, firstLastName, secondLastName, password, email, 0))
-                print(f"User added: Name: {user}, Last Name: {firstLastName}, Second Last Name: {secondLastName}, Email: {email}")
+                cursor.execute(sql_usarios, (user, apPat, apMat, password, email, 0))
+                print(f"User added: Name: {user}, Last Name: {apPat}, Second Last Name: {apMat}, Email: {email}")
                 
                 # Insert movie record
                 random_num = random.randint(0, 1000)
-                movie_name = f'Movie{random_num}'
-                cursor.execute(sql_peliculas, (movie_name, 'Scarry', 210, 4))
-                print(f"Movie added: Name: {movie_name}")
+                idPelicula = f'Movie{random_num}'
+                cursor.execute(sql_peliculas, (idPelicula, 'Scarry', 210, 4))
+                print(f"Movie added: Name: {idPelicula}")
                 
                 # Insert rent record
-                cursor.execute(sql_rentar, (user_id, movie_id, 3, 1))
-                print(f"Rent added: User ID: {user_id}, Movie ID: {movie_id}, Rent Date: CURRENT_TIMESTAMP, Rent Days: 3, Status: 1")
+                cursor.execute(sql_rentar, (idUsuario, idPelicula, 3, 1))
+                print(f"Rent added: User ID: {idUsuario}, Movie ID: {idPelicula}, Rent Date: CURRENT_TIMESTAMP, Rent Days: 3, Status: 1")
             
             # Commit transaction
             connection.commit()  
@@ -75,66 +75,30 @@ def filter_last_name(ending):
     try:
         with connection.cursor() as cursor:
             sql = "SELECT * FROM users WHERE apPat LIKE %s OR apMat LIKE %s"
-            pattern = f'%{ending}'
-            cursor.execute(sql, (pattern, pattern))
+            coincidence = f'%{ending}'
+            cursor.execute(sql, (coincidence, coincidence))
             result = cursor.fetchall()
-            # Print result
-            if not result:
-                print("No users found")
+            if not result: 
+                print("No users found with last name ending in '{}'".format(ending))
             else:
-                # Extracting only necessary fields from the result set
                 filtered_result = [(user['idUsuario'], user['nombre'], user['apPat'], user['apMat'], user['email']) for user in result]
                 for user in filtered_result:
                     print("ID: {}, Name: {} {} {}, Email: {}".format(*user))
     finally:
         connection.close()
 
-
-
-# Function to change genre of a certain movie
+'''
+Function to change the gender of a movie
+'''
 def change_movie_genre(movie, genre):
-    connection = connect_to_database()
-    try:
-        with connection.cursor() as cursor:
-            # Query
-            sql_find_movie = "SELECT * FROM movies WHERE name = %s"
-            cursor.execute(sql_find_movie, (movie,))
-            movie_to_change = cursor.fetchone()
-            # Changing genre
-            if movie_to_change:
-                sql_change_genre = "UPDATE movies SET genre = %s WHERE name = %s"
-                cursor.execute(sql_change_genre, (genre, movie))
-                connection.commit()
-                print("Genre changed successfully!")
-            else:
-                print("Movie not found!")
-    finally:
-        connection.close()
 
-
-# Function that deletes rentals from 3 days ago
-def delete_old_rentals():
-    connection = connect_to_database()
-    try:
-        with connection.cursor() as cursor:
-            # Limit date and query
-            sql_delete_rentals = """
-                            DELETE FROM rent 
-                            WHERE rent_date < DATE_SUB(NOW(), INTERVAL 4 DAY)
-                        """
-            cursor.execute(sql_delete_rentals)
-            connection.commit()  # Confirm transaction
-            deleted = cursor.rowcount
-            print(f"Rentals deleted: {deleted}")
-    finally:
-        connection.close()
 
 
 # Perform functions
 print("PyMySql Functions")
 insert_records()
 last_name_end = input("Enter the ending of the last name to search: ")
-filter_users_last_name(last_name_end)
+filter_last_name(last_name_end)
 movie_c = input("Enter the name of the movie to change: ")
 genre_c = input("Enter the new genre of the movie: ")
 change_movie_genre(movie_c, genre_c)
