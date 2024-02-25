@@ -37,7 +37,7 @@ def delete_movie(id_movie):
     if movie:
         rents = Rentar.query.filter_by(idPelicula = movie.idPelicula).all()
         if rents:
-            print("Movie with associated rentals, it can't be delete it.")
+            print("Movie with associated rentals, it can't be delete it")
             return
         else:
             db.session.delete(movie)
