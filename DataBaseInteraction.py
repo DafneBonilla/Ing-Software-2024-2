@@ -10,7 +10,7 @@ def connect_to_database():
     connection = pymysql.connect(host='localhost',
                                  user='lab',
                                  password='Developer123!',
-                                 database='lab_inge_software',
+                                 database='lab_ing_software',
                                  charset='utf8mb4',
                                  cursorclass=pymysql.cursors.DictCursor)
     return connection
