@@ -34,5 +34,5 @@ class Usuarios(db.Model):
     Function to represent the user object as a string
     '''
     def __str__(self):
-        return (f'idUsuario: {self.idUsuario}, nombre: {self.nombre}, apPat: {self.apPat}, apMat: {self.apMat}, '
-                f'password: {self.password}, email: {self.email}, superUser: {self.superUser}')
+        return (f"<User(Usuario Id = '{self.idUsuario}', Nombre = '{self.nombre}', Apellido Paterno = '{self.apPat}', Apellido Materno ='{self.apMat}', "
+                f"Password = '{self.password}', Email = '{self.email}', superUser = '{self.superUser}')>")
