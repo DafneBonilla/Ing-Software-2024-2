@@ -4,15 +4,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Solicitar ID de Renta</title>
+    <style>
+        .required {
+            color: #ff0000;
+            font-size: smaller;
+        }
+        .centrado {
+            text-align: center;
+        }
+        body {
+            background-color: #012e40; /* Color de fondo */
+            font-family: "Arial", serif !important;
+            color: white; /* Cambia el color del texto a blanco */
+        }
+        .section-titleBig {
+            font-family: "Arial Black", serif !important;
+            text-align: center;
+            color: #3ca6a6;
+        }
+        /* Estilos para los campos de entrada de texto */
+        .input-container {
+            margin-bottom: 10px; /* Espacio entre los campos */
+            text-align: center; /* Centra el contenido del contenedor */
+        }
+        .input-container label {
+            display: inline-block; /* Hace que las etiquetas ocupen solo el espacio necesario */
+            width: 200px; /* Ancho fijo para las etiquetas */
+        }
+        .input-container input {
+            width: calc(40% - 110px); /* Ancho del campo de entrada, restando el espacio para el borde */
+            height: 20px; /* Altura del campo de entrada */
+            padding: 5px; /* Espaciado dentro del campo de entrada */
+            border: 1px solid #3ca6a6; /* Borde del campo de entrada */
+            border-radius: 5px; /* Borde redondeado */
+            background-color: #3ca6a6; /* Color de fondo del campo de entrada */
+            color: white; /* Color del texto */
+            display: block; /* Cambia el display a block */
+            margin: 0 auto; /* Centra horizontalmente */
+            text-align: left; /* Alinea el texto a la izquierda */
+        }
+        /* Estilos para el botón de enviar */
+        .boton-enviar {
+            background-color: #ffffff;
+            color: #000000;
+            font-family: "Arial Black", serif !important;
+            text-align: center;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: block; /* Cambia el display a block */
+            margin: 0 auto; /* Centra horizontalmente */
+            margin-top: 10px; /* Espacio superior */
+        }
+        a {
+            text-decoration: none;
+            color: white;
+            text-align: center;
+            display: block; /* Cambia el display a block */
+            margin: 0 auto; /* Centra horizontalmente */
+            margin-top: 20px; /* Espacio superior */
+        }
+    </style>
 </head>
 <body>
-    <h1>Solicitar ID de Renta</h1>
-    <form action="" method="POST">
-        <label for="id_renta">ID de Renta:</label>
-        <input type="text" id="id_renta" name="id_renta">
-        <button type="submit">Enviar</button>
-    </form>
-    <a href="/renta">Regresar</a>
+    <div class="section-titleBig">
+        <h1>ID DE LA RENTA</h1>
+    </div>
+    <div class="input-container">
+        <form action="" method="POST">
+            <label for="id_renta">ID de la Renta: </label>
+            <input type="text" id="id_renta" name="id_renta">
+            <button type="submit" class="boton-enviar">Enviar</button>
+        </form>
+    </div>
+    <a href="/" class="centrado">Regresar</a>
     {% if get_flashed_messages() %}
         {% for message in get_flashed_messages() %}
             <p>{{ message }}</p>

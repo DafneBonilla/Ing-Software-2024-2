@@ -5,24 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Rentas</title>
     <style>
+        body {
+            background-color: #012e40; /* Color de fondo */
+            font-family: "Arial", serif !important;
+            color: white; /* Color del texto */
+            text-align: center; /* Alineación central */
+        }
+        h1 {
+            font-family: "Arial Black", serif !important;
+            color: #3ca6a6; /* Color del título */
+        }
         table {
             border-collapse: collapse;
             width: 100%;
+            margin-bottom: 20px; /* Espacio inferior */
         }
         th, td {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
+            border: 1px solid #3ca6a6; /* Borde de las celdas */
+            text-align: center; /* Alineación central */
+            padding: 8px; /* Espaciado interno */
         }
         th {
-            background-color: #f2f2f2;
+            background-color: #3ca6a6; /* Color de fondo del encabezado */
+            color: white; /* Color del texto del encabezado */
         }
         .renta-pasada {
-            background-color: #e37878;
-            color: white;
+            background-color: #ffcc00; /* Color de fondo para rentas pasadas */
+            color: white; /* Color del texto para rentas pasadas */
         }
-        .red-text {
-            color: #e37878;
+        a {
+            text-decoration: none; /* Sin subrayado en los enlaces */
+            color: white; /* Color del texto del enlace */
+            display: block; /* Muestra el enlace como bloque */
+            margin-bottom: 10px; /* Espacio inferior */
         }
     </style>
 </head>
@@ -52,12 +67,7 @@
             {% endfor %}
         </tbody>
     </table>
-    <p>Las rentas marcadas en <span class="red-text">rojito</span> indican que ya no están vigentes.</p>
-    <br>
-    <a href="/renta/agregar">Agregar Renta</a>
-    <br>
-    <a href="/renta/modificar">Modificar Renta</a>
-    <br>
+    <p>Las rentas en color amarillo ya no están vigentes</p>
     <a href="/">Regresar</a>
     {% if get_flashed_messages() %}
         {% for message in get_flashed_messages() %}
