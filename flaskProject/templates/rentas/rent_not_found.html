@@ -3,12 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Renta No Encontradoa</title>
+    <title>Renta No Encontrada</title>
+    <style>
+        .required {
+            color: #ff0000;
+            font-size: smaller;
+        }
+        .centrado {
+            text-align: center;
+            font-size: 35px;
+        }
+        .centrado2 {
+            text-align: center;
+        }
+        body {
+            background-color: #012e40; /* Color de fondo */
+            font-family: "Arial", serif !important;
+            color: white; /* Cambia el color del texto a blanco */
+        }
+        .section-titleBig {
+            font-family: "Arial Black", serif !important;
+            text-align: center;
+            color: #3ca6a6;
+        }
+        a {
+            text-decoration: none;
+            color: white;
+            text-align: center;
+            display: block; /* Cambia el display a block */
+            margin: 0 auto; /* Centra horizontalmente */
+            margin-top: 20px; /* Espacio superior */
+        }
+    </style>
 </head>
 <body>
-    <h1>Renta No Encontrada</h1>
-    <p>La renta que estas buscando no ha sido encontrada</p>
-    <a href="/renta">Regresar</a>
+    <div class="section-titleBig">
+      <h1>RENTA NO ENCONTRADA</h1>
+    </div>
+    <div class="centrado">
+      <p>Ops! La renta que estás buscando no ha sido encontrada</p>
+    </div>
+    <div class="centrado2">
+      <a href="/renta">Regresar</a>
+    </div>
     {% if get_flashed_messages() %}
         {% for message in get_flashed_messages() %}
             <p>{{ message }}</p>
