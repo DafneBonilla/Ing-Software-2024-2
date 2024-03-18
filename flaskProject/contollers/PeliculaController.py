@@ -86,7 +86,7 @@ def delete_movie():
             id_movie = int(id_movie)
             return redirect(url_for('pelicula.eliminar_pelicula_id', id = id_movie))
         except ValueError:
-            flash('Por favor, ingrese un ID válido.', 'error')
+            flash('Ops! ID inválido, ingrese un ID válido nuevamente', 'error')
     return render_template('solicitar_id_pelicula.html')
 
 # Route to delete movie by id -> localhost:5001/pelicula/eliminar/<int:id>
@@ -98,7 +98,7 @@ def delete_movie_id(id):
     else:
         rentas = Rentar.query.filter_by(idPelicula=pelicula.idPelicula).all()
         if rentas:
-            flash('No es posible eliminar la película debido a que tiene rentas asociadas.', 'error')
+            flash('No es posible eliminar la película debido a que tiene rentas asociadas', 'error')
         else:
             try:
                 db.session.delete(pelicula)

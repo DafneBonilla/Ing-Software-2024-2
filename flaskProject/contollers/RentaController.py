@@ -41,7 +41,7 @@ def add_rent():
             if not idUsuario or not idPelicula:
                 flash('Faltan campos por llenar', 'error')
                 return redirect(url_for('renta.agregar_renta'))
-            usuario = Usuarios.query.filter_by(idUsuario=idUsuario).first()
+            usuario = Usuarios.query.filter_by(idUsuario = idUsuario).first()
             if not usuario:
                 flash('El usuario no está registrado', 'error')
                 return redirect(url_for('renta.agregar_renta'))
@@ -66,7 +66,7 @@ def modify_rent():
     if request.method == 'POST':
         try:
             id_renta = int(request.form.get('id_renta'))
-            return redirect(url_for('renta.modificar_renta_id', id=id_renta))
+            return redirect(url_for('renta.modificar_renta_id', id = id_renta))
         except ValueError:
             flash('Ops! ID inválido, ingrese un ID válido nuevamente', 'error')
             return redirect(url_for('renta.modificar_renta'))
