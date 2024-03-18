@@ -13,9 +13,12 @@ db.init_app(app)
 app.register_blueprint(mi_primer_blueprint)
 app.register_blueprint(alumno_blueprint)
 
+
 @app.route('/')
 def hello_world():  # put application's code here
     return render_template('index.html')
 
+
 if __name__ == '__main__':
     app.run()
+ 
