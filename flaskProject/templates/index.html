@@ -3,8 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title>Index</title>
+    <style>
+        .section {
+            margin-bottom: 10px;
+        }
+        .section-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .section-item {
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
 </head>
 <body>
-    <a href="/mpb/html">Regresar</a>
+    <h1>Indice</h1>
+    <div class="section">
+        <div class="section-title">Usuarios</div>
+        <ul class="section-item">
+            <li><a href="/usuario">Ver Usuarios</a></li>
+            <li><a href="/usuario/agregar">Agregar Usuario</a></li>
+            <li><a href="/usuario/modificar">Modificar Usuario</a></li>
+            <li><a href="/usuario/eliminar">Eliminar Usuario</a></li>
+        </ul>
+    </div>
+    <div class="section">
+        <div class="section-title">Peliculas</div>
+        <ul class="section-item">
+            <li><a href="/pelicula">Ver Peliculas</a></li>
+            <li><a href="/pelicula/agregar">Agregar Pelicula</a></li>
+            <li><a href="/pelicula/modificar">Modificar Pelicula</a></li>
+            <li><a href="/pelicula/eliminar">Eliminar Pelicula</a></li>
+        </ul>
+    </div>
+    <div class="section">
+        <div class="section-title">Rentas</div>
+        <ul class="section-item">
+            <li><a href="/renta">Ver Rentas</a></li>
+            <li><a href="/renta/agregar">Agregar Renta</a></li>
+            <li><a href="/renta/modificar">Modificar Renta</a></li>
+        </ul>
+    </div>
 </body>
 </html>

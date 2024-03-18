@@ -21,7 +21,7 @@ def watch_rents():
             fecha_vencimiento = renta.fecha_renta + timedelta(days=renta.dias_de_renta)
             renta_pasada = fecha_vencimiento < datetime.combine(date.today(), datetime.min.time())
             rents_data.append({'renta': renta, 'renta_pasada': renta_pasada})
-        return render_template('rentas.html', rentas=rents_data)
+        return render_template('rentas/rents.html', rentas=rents_data)
     except Exception as e:
         print("Ocurrió un error:", str(e))
         return "Ocurrió un error. Por favor, inténtalo de nuevo más tarde."
@@ -30,7 +30,7 @@ def watch_rents():
 @renta_blueprint.route('/agregar', methods=['GET', 'POST'])
 def add_rent():
     if request.method == 'GET':
-        return render_template('agregar_renta.html')
+        return render_template('rentas/rent_add.html')
     else:
         try:
             idUsuario = request.form.get('idUsuario')
@@ -70,7 +70,7 @@ def modify_rent():
         except ValueError:
             flash('Ops! ID inválido, ingrese un ID válido nuevamente', 'error')
             return redirect(url_for('renta.modificar_renta'))
-    return render_template('solicitar_id_renta.html')
+    return render_template('rentas/rent_id.html')
 
 # Route to modify rent by id -> localhost:5001/renta/modificar/<int:id>
 @renta_blueprint.route('/modificar/<int:id>', methods=['GET', 'POST'])
@@ -78,9 +78,9 @@ def modify_rent_id(id):
     try:
         renta = Rentar.query.get(id)
         if not renta:
-            return render_template('renta_no_encontrada.html')
+            return render_template('rentas/rent_not_found.html')
         if request.method == 'GET':
-            return render_template('modificar_renta.html', renta=renta)
+            return render_template('rentas/rent_modify.html', renta=renta)
         elif request.method == 'POST':
             renta.estatus = True if request.form.get('estatus') else False
             db.session.commit()

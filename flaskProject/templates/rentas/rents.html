@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Rentas</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .renta-pasada {
+            background-color: #e37878;
+            color: white;
+        }
+        .red-text {
+            color: #e37878;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de Rentas</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>ID de Usuario</th>
+                <th>ID de Película</th>
+                <th>Fecha de Renta</th>
+                <th>Días de Renta</th>
+                <th>Estatus</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in rentas %}
+            <tr {% if item.renta_pasada %} class="renta-pasada" {% endif %}>
+                <td>{{ item.renta.idRentar }}</td>
+                <td>{{ item.renta.idUsuario }}</td>
+                <td>{{ item.renta.idPelicula }}</td>
+                <td>{{ item.renta.fecha_renta }}</td>
+                <td>{{ item.renta.dias_de_renta }}</td>
+                <td>{{ item.renta.estatus }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p>Las rentas marcadas en <span class="red-text">rojito</span> indican que ya no están vigentes.</p>
+    <br>
+    <a href="/renta/agregar">Agregar Renta</a>
+    <br>
+    <a href="/renta/modificar">Modificar Renta</a>
+    <br>
+    <a href="/">Regresar</a>
+    {% if get_flashed_messages() %}
+        {% for message in get_flashed_messages() %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

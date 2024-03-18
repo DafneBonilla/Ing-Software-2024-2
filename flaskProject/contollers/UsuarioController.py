@@ -13,13 +13,13 @@ Users are deleted and modified by id in order to avoid posible mistakes.
 @usuario_blueprint.route('/')
 def watch_users():
     usuarios = Usuarios.query.all()
-    return render_template('usuarios.html', usuarios=usuarios)
+    return render_template('usuarios/users.html', usuarios=usuarios)
 
 # Route to add a user -> localhost:5001/usuario/agregar
 @usuario_blueprint.route('/agregar', methods=['GET', 'POST'])
 def add_user():
     if request.method == 'GET':
-        return render_template('agregar_usuario.html')
+        return render_template('usuarios/user_add.html')
     else:
         try:
             nombre = request.form.get('nombre')
@@ -33,7 +33,7 @@ def add_user():
                 return redirect(url_for('usuario.agregar_usuario'))
             if Usuarios.query.filter_by(email = email).first():
                 flash('Ya hay una cuenta asociada a esta dirección de correo electrónico', 'error')
-                return render_template('agregar_usuario.html')
+                return render_template('usuarios/user_add.html')
             new_user = Usuarios(nombre = nombre, apPat = apPat, apMat = apMat, password = password, email = email, superUser = superUser)
             db.session.add(new_user)
             db.session.commit()
@@ -53,14 +53,14 @@ def modify_user():
             return redirect(url_for('usuario.modificar_usuario_id', id = id_usuario))
         except ValueError:
             flash('Ops! ID inválido, ingrese un ID válido nuevamente', 'error')
-    return render_template('solicitar_id_usuario.html')
+    return render_template('usuarios/user_id.html')
 
 # Route to modify user by id -> localhost:5001/usuario/modificar/<int:id>
 @usuario_blueprint.route('/modificar/<int:id>', methods=['GET', 'POST'])
 def modify_user_id(id):
     usuario = Usuarios.query.get(id)
     if not usuario:
-        return render_template('usuario_no_encontrado.html')
+        return render_template('usuarios/user_not_found.html')
     if request.method == 'GET':
         return render_template('modificar_usuario.html', usuario=usuario)
     elif request.method == 'POST':
@@ -97,14 +97,14 @@ def delete_user():
             return redirect(url_for('usuario.eliminar_usuario_id', id = id_usuario))
         except ValueError:
             flash('Ops! ID inválido, ingrese un ID válido nuevamente', 'error')
-    return render_template('solicitar_id_usuario.html')
+    return render_template('usuarios/user_id.html')
 
 # Route to delete user by id -> localhost:5001/usuario/eliminar/<int:id>
 @usuario_blueprint.route('/eliminar/<int:id>', methods=['GET', 'POST'])
 def delete_user_id(id):
     usuario = Usuarios.query.get(id)
     if not usuario:
-        return render_template('usuario_no_encontrado.html')
+        return render_template('usuarios/user_not_found.html')
     rentas = Rentar.query.filter_by(idUsuario = usuario.idUsuario).all()
     if rentas:
         flash('No es posible eliminar al usuario debido a que tiene rentas asociadas', 'error')

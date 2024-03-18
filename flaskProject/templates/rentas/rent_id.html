@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitar ID de Renta</title>
+</head>
+<body>
+    <h1>Solicitar ID de Renta</h1>
+    <form action="" method="POST">
+        <label for="id_renta">ID de Renta:</label>
+        <input type="text" id="id_renta" name="id_renta">
+        <button type="submit">Enviar</button>
+    </form>
+    <a href="/renta">Regresar</a>
+    {% if get_flashed_messages() %}
+        {% for message in get_flashed_messages() %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

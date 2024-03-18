@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Usuario</title>
+    <style>
+        .required {
+            color: #ec3a3a;
+        }
+    </style>
+</head>
+<body>
+    <h1>Agregar Usuario</h1>
+    <form action="/usuario/agregar" method="post">
+        <label for="nombre">Nombre <span class="required">*</span>:</label>
+        <input type="text" id="nombre" name="nombre" required><br><br>
+
+        <label for="apPat">Apellido Paterno <span class="required">*</span>:</label>
+        <input type="text" id="apPat" name="apPat" required><br><br>
+
+        <label for="apMat">Apellido Materno:</label>
+        <input type="text" id="apMat" name="apMat"><br><br>
+
+        <label for="password">Contraseña <span class="required">*</span>:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <label for="email">Email <span class="required">*</span>:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="superUser">Super Usuario:</label>
+        <input type="checkbox" id="superUser" name="superUser"><br><br>
+
+        <input type="submit" value="Agregar Usuario">
+    </form>
+    <br>
+    <p><span class="required">*</span> Campos obligatorios</p>
+    <a href="/usuario">Regresar</a>
+    {% if get_flashed_messages() %}
+        {% for message in get_flashed_messages() %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

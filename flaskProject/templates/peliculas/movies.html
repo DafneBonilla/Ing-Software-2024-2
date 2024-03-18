@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Peliculas</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de Peliculas</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Genero</th>
+                <th>Duracion</th>
+                <th>Inventario</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pelicula in peliculas %}
+            <tr>
+                <td>{{ pelicula.idPelicula }}</td>
+                <td>{{ pelicula.nombre }}</td>
+                <td>{{ pelicula.genero }}</td>
+                <td>{{ pelicula.duracion }}</td>
+                <td>{{ pelicula.inventario }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href="/pelicula/agregar">Agregar Pelicula</a>
+    <br>
+    <a href="/pelicula/modificar">Modificar Pelicula</a>
+    <br>
+    <a href="/pelicula/eliminar">Eliminar Pelicula</a>
+    <br>
+    <a href="/">Regresar</a>
+    {% if get_flashed_messages() %}
+        {% for message in get_flashed_messages() %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

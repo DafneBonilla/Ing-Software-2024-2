@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitar ID de Usuario</title>
+</head>
+<body>
+    <h1>Solicitar ID de Usuario</h1>
+    <form action="" method="POST">
+        <label for="id_usuario">ID de Usuario:</label>
+        <input type="text" id="id_usuario" name="id_usuario">
+        <button type="submit">Enviar</button>
+    </form>
+    <a href="/usuario">Regresar</a>
+    {% if get_flashed_messages() %}
+        {% for message in get_flashed_messages() %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

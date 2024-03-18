@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Pelicula</title>
+    <style>
+        .required {
+            color: #ec3a3a;
+        }
+    </style>
+</head>
+<body>
+    <h1>Agregar Pelicula</h1>
+    <form action="/pelicula/agregar" method="post">
+        <label for="nombre">Nombre <span class="required">*</span>:</label>
+        <input type="text" id="nombre" name="nombre" required><br><br>
+
+        <label for="genero">Genero </label>
+        <input type="text" id="genero" name="genero"><br><br>
+
+        <label for="duracion">Duracion </label>
+        <input type="number" id="duracion" name="duracion" min="1" step="1"><br><br>
+
+        <label for="inventario">Inventario </label>
+        <input type="number" id="inventario" name="inventario" min="0" step="1"><br><br>
+
+        <input type="submit" value="Agregar Pelicula">
+    </form>
+    <br>
+    <p><span class="required">*</span> Campos obligatorios</p>
+    <a href="/pelicula">Regresar</a>
+    {% if get_flashed_messages() %}
+        {% for message in get_flashed_messages() %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

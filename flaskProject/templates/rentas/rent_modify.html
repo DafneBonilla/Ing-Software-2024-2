@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar Renta</title>
+</head>
+<body>
+    <h1>Modificar Renta</h1>
+    <form action="" method="POST">
+        <label for="idUsuario">ID Usuario:</label>
+        <input type="text" id="idUsuario" name="idUsuario" value="{{ renta.idUsuario }}" readonly><br><br>
+
+        <label for="idPelicula">ID Pelicula:</label>
+        <input type="text" id="idPelicula" name="idPelicula" value="{{ renta.idPelicula }}" readonly><br><br>
+
+        <label for="fecha_renta">Fecha Renta:</label>
+        <input type="text" id="fecha_renta" name="fecha_renta" value="{{ renta.fecha_renta }}" readonly><br><br>
+
+        <label for="dias_de_renta">Días de Renta:</label>
+        <input type="text" id="dias_de_renta" name="dias_de_renta" value="{{ renta.dias_de_renta }}" readonly><br><br>
+
+        <label for="estatus">Estado:</label>
+        <input type="checkbox" id="estatus" name="estatus" {% if renta.estatus %} checked {% endif %}><br><br>
+
+        <button type="submit">Guardar Cambios</button>
+    </form>
+    {% if get_flashed_messages() %}
+        {% for message in get_flashed_messages() %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

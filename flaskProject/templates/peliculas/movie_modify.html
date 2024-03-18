@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar Pelicula</title>
+</head>
+<body>
+    <h1>Modificar Pelicula</h1>
+    <form action="" method="POST">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" value="{{ pelicula.nombre }}"><br>
+
+        <label for="genero">Genero:</label>
+        <input type="text" id="genero" name="genero" value="{{ pelicula.genero }}"><br>
+
+        <label for="duracion">Duracion:</label>
+        <input type="number" id="duracion" name="duracion" min="1" step="1" value="{{ pelicula.duracion }}"><br>
+
+        <label for="inventario">Inventario:</label>
+        <input type="number" id="inventario" name="inventario" min="0" step="1" value="{{ pelicula.inventario }}"><br>
+
+        <button type="submit">Guardar Cambios</button>
+    </form>
+    {% if get_flashed_messages() %}
+        {% for message in get_flashed_messages() %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

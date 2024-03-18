@@ -13,7 +13,7 @@ Movies are deleted and modified by id in order to avoid posible mistakes.
 @pelicula_blueprint.route('/agregar', methods=['GET', 'POST'])
 def add_movie():
     if request.method == 'GET':
-        return render_template('agregar_pelicula.html')
+        return render_template('peliculas/movie_add.html')
     else:
         nombre = request.form.get('nombre')
         genero = request.form.get('genero')
@@ -47,16 +47,16 @@ def modify_movie():
             return redirect(url_for('pelicula.modificar_pelicula_id', id = id_movie))
         except ValueError:
             flash('Ops! ID inválido, ingrese un ID válido nuevamente', 'error')
-    return render_template('solicitar_id_pelicula.html')
+    return render_template('peliculas/movie_id.html')
 
 # Route to modify movie by id -> localhost:5001/pelicula/odificar/<int:id>
 @pelicula_blueprint.route('/modificar/<int:id>', methods=['GET', 'POST'])
 def modify_movie_id(id):
     pelicula = Peliculas.query.get(id)
     if not pelicula:
-        return render_template('pelicula_no_encontrada.html')
+        return render_template('peliculas/movie_not_found.html')
     if request.method == 'GET':
-        return render_template('modificar_pelicula.html', pelicula = pelicula)
+        return render_template('peliculas/movie_modify.html', pelicula = pelicula)
     elif request.method == 'POST':
         pelicula.nombre = request.form.get('nombre')
         pelicula.genero = request.form.get('genero')
@@ -64,7 +64,7 @@ def modify_movie_id(id):
         pelicula.inventario = request.form.get('inventario')
         if not pelicula.nombre:
             flash('Ops! Falta el nombre de la película', 'error')
-            return render_template('modificar_pelicula.html', pelicula = pelicula)
+            return render_template('peliculas/movie_modify.html', pelicula = pelicula)
         # Convert duration and inventory to int if provided
         pelicula.duracion = int(pelicula.duracion) if pelicula.duracion else None
         pelicula.inventario = int(pelicula.inventario) if pelicula.inventario else 1
@@ -87,14 +87,14 @@ def delete_movie():
             return redirect(url_for('pelicula.eliminar_pelicula_id', id = id_movie))
         except ValueError:
             flash('Ops! ID inválido, ingrese un ID válido nuevamente', 'error')
-    return render_template('solicitar_id_pelicula.html')
+    return render_template('peliculas/movie_id.html')
 
 # Route to delete movie by id -> localhost:5001/pelicula/eliminar/<int:id>
 @pelicula_blueprint.route('/eliminar/<int:id>', methods=['GET', 'POST'])
 def delete_movie_id(id):
     pelicula = Peliculas.query.get(id)
     if not pelicula:
-        return render_template('pelicula_no_encontrada.html')
+        return render_template('peliculas/movie_not_found.html')
     else:
         rentas = Rentar.query.filter_by(idPelicula=pelicula.idPelicula).all()
         if rentas:

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Usuarios</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de Usuarios</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <!--<th>Apellido Paterno</th>-->
+                <!--<th>Apellido Materno</th>-->
+                <!--<th>Contraseña</th>-->
+                <th>Email</th>
+                <!--<th>Super Usuario</th>-->
+            </tr>
+        </thead>
+        <tbody>
+            {% for usuario in usuarios %}
+            <tr>
+                <td>{{ usuario.idUsuario }}</td>
+                <td>{{ usuario.nombre }}</td>
+                <!--<td>{{ usuario.apPat }}</td>-->
+                <!--<td>{{ usuario.apMat }}</td>-->
+                <!--<td>{{ usuario.password }}</td>-->
+                <td>{{ usuario.email }}</td>
+                <!--<td>{{ usuario.superUser }}</td>-->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href="/usuario/agregar">Agregar Usuario</a>
+    <br>
+    <a href="/usuario/modificar">Modificar Usuario</a>
+    <br>
+    <a href="/usuario/eliminar">Eliminar Usuario</a>
+    <br>
+    <a href="/">Regresar</a>
+    {% if get_flashed_messages() %}
+        {% for message in get_flashed_messages() %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>
