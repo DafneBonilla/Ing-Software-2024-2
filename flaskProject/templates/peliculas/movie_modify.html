@@ -54,6 +54,9 @@
             border-radius: 8px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            display: block; /* Cambia el display a block */
+            margin: 0 auto; /* Centra horizontalmente */
+            margin-top: 10px; /* Espacio superior */
         }
         .boton-agregar:hover {
             background-color: #ffffff;
@@ -62,26 +65,41 @@
             text-decoration: none;
             color: white;
             text-align: center;
+            display: block; /* Cambia el display a block */
+            margin: 0 auto; /* Centra horizontalmente */
+            margin-top: 20px; /* Espacio superior */
         }
     </style>
 </head>
 <body>
-    <h1>Modificar Pelicula</h1>
+    <div class="section-titleBig">
+      <h1>MODIFICAR PELÍCULA</h1>
+    </div>
     <form action="" method="POST">
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" value="{{ pelicula.nombre }}"><br>
+        <!-- Contenedor para el campo de nombre -->
+        <div class="input-container">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" value="{{ pelicula.nombre }}">
+        </div>
+        <!-- Contenedor para el campo de género -->
+        <div class="input-container">
+            <label for="genero">Género:</label>
+            <input type="text" id="genero" name="genero" value="{{ pelicula.genero }}">
+        </div>
+        <!-- Contenedor para el campo de duración -->
+        <div class="input-container">
+            <label for="duracion">Duración:</label>
+            <input type="number" id="duracion" name="duracion" min="1" step="1" value="{{ pelicula.duracion }}">
+        </div>
+        <!-- Contenedor para el campo de inventario -->
+        <div class="input-container">
+            <label for="inventario">Inventario:</label>
+            <input type="number" id="inventario" name="inventario" min="0" step="1" value="{{ pelicula.inventario }}">
+        </div>
 
-        <label for="genero">Genero:</label>
-        <input type="text" id="genero" name="genero" value="{{ pelicula.genero }}"><br>
-
-        <label for="duracion">Duracion:</label>
-        <input type="number" id="duracion" name="duracion" min="1" step="1" value="{{ pelicula.duracion }}"><br>
-
-        <label for="inventario">Inventario:</label>
-        <input type="number" id="inventario" name="inventario" min="0" step="1" value="{{ pelicula.inventario }}"><br>
-
-        <button type="submit">Guardar Cambios</button>
+        <button type="submit" class="boton-agregar">GUARDAR CAMBIOS</button>
     </form>
+    <a href="/">Regresar</a>
     {% if get_flashed_messages() %}
         {% for message in get_flashed_messages() %}
             <p>{{ message }}</p>
