@@ -5,7 +5,11 @@ from alchemyClasses import db
 
 pelicula_blueprint = Blueprint('pelicula', __name__, url_prefix='/pelicula')
 
-# Route to add a movie -> localhost:5000/pelicula/agregar
+"""
+Movies are deleted and modified by id in order to avoid posible mistakes.
+"""
+
+# Route to add a movie -> localhost:5001/pelicula/agregar
 @pelicula_blueprint.route('/agregar', methods=['GET', 'POST'])
 def add_movie():
     if request.method == 'GET':
@@ -32,7 +36,7 @@ def add_movie():
             flash('Error al agregar película. Detalles: {}'.format(str(e)), 'error')
             return redirect(url_for('pelicula.agregar_pelicula'))
 
-# Route to modify movie -> localhost:5000/pelicula/modificar
+# Route to modify movie -> localhost:5001/pelicula/modificar
 @pelicula_blueprint.route('/modificar', methods=['GET', 'POST'])
 def modify_movie():
     if request.method == 'POST':
@@ -45,7 +49,7 @@ def modify_movie():
             flash('Ops! ID inválido, ingrese un ID válido nuevamente', 'error')
     return render_template('solicitar_id_pelicula.html')
 
-# Route to modify movie by id -> localhost:5000/pelicula/odificar/<int:id>
+# Route to modify movie by id -> localhost:5001/pelicula/odificar/<int:id>
 @pelicula_blueprint.route('/modificar/<int:id>', methods=['GET', 'POST'])
 def modify_movie_id(id):
     pelicula = Peliculas.query.get(id)
@@ -73,7 +77,7 @@ def modify_movie_id(id):
             flash('Error al modificar película. Detalles: {}'.format(str(e)), 'error')
             return redirect(url_for('pelicula.modificar_pelicula_id', id = id))
 
-# Route to delete movie -> localhost:5000/pelicula/eliminar
+# Route to delete movie -> localhost:5001/pelicula/eliminar
 @pelicula_blueprint.route('/eliminar', methods=['GET', 'POST'])
 def delete_movie():
     if request.method == 'POST':
@@ -85,7 +89,7 @@ def delete_movie():
             flash('Por favor, ingrese un ID válido.', 'error')
     return render_template('solicitar_id_pelicula.html')
 
-# Route to delete movie by id -> localhost:5000/pelicula/eliminar/<int:id>
+# Route to delete movie by id -> localhost:5001/pelicula/eliminar/<int:id>
 @pelicula_blueprint.route('/eliminar/<int:id>', methods=['GET', 'POST'])
 def delete_movie_id(id):
     pelicula = Peliculas.query.get(id)
@@ -104,4 +108,3 @@ def delete_movie_id(id):
                 db.session.rollback()
                 flash('Error al eliminar película. Detalles: {}'.format(str(e)), 'error')
         return redirect(url_for('pelicula.ver_peliculas'))
-    
