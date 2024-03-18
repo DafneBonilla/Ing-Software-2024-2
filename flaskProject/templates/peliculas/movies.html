@@ -5,22 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Películas Disponibles</title>
     <style>
+        body {
+            background-color: #012e40;
+            font-family: "Arial", serif !important;
+        }
         table {
             border-collapse: collapse;
             width: 100%;
+            margin-bottom: 20px;
         }
         th, td {
-            border: 1px solid #0078ff;
-            text-align: left;
+            border: 1px solid #3ca6a6;
+            text-align: center;
+            color: white;
             padding: 8px;
         }
         th {
-            background-color: #f2f2f2;
+            background-color: #3ca6a6;
+        }
+        .section-title {
+            font-family: "Arial Black", serif !important;
+            margin-bottom: 5px;
+            font-size: 30px;
+            color: #ffffff;
+            text-align: center;
+        }
+        a {
+            text-decoration: none;
+            color: white;
+            display: block;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <h1>Películas Disponibles</h1>
+    <h1 class="section-title">PELÍCULAS</h1>
     <table>
         <thead>
             <tr>
@@ -43,14 +62,9 @@
             {% endfor %}
         </tbody>
     </table>
-    <br>
-    <a href="/pelicula/agregar">Agregar Pelicula</a>
-    <br>
-    <a href="/pelicula/modificar">Modificar Pelicula</a>
-    <br>
-    <a href="/pelicula/eliminar">Eliminar Pelicula</a>
-    <br>
-    <a href="/">Regresar</a>
+    <div style="text-align: center;"> <!-- Centra el enlace -->
+        <a href="/">REGRESAR</a>
+    </div>
     {% if get_flashed_messages() %}
         {% for message in get_flashed_messages() %}
             <p>{{ message }}</p>

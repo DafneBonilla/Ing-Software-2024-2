@@ -4,47 +4,91 @@
     <meta charset="UTF-8">
     <title>Index</title>
     <style>
+        body {
+            background-color: #012e40; /* Color de fondo */
+            font-family: "Arial", serif !important;
+        }
+        .section-container {
+            margin: 0 auto;
+            width: 60%;
+            border: 2px solid #005762;
+            border-radius: 20px;
+            padding: 20px;
+            background-color: #005762;
+            margin-bottom: 20px;
+        }
         .section {
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
         .section-title {
-            font-weight: bold;
+            font-family: "Arial Black", serif !important;
             margin-bottom: 5px;
+            font-size: 30px;
+            color: #ffffff;
+            text-align: center;
+        }
+        .section-titleBig {
+            font-family: "Arial Black", serif !important;
+            text-align: center;
+            color: #3ca6a6;
         }
         .section-item {
-            display: block;
-            margin: 0;
+            list-style-type: none;
             padding: 0;
+            text-align: center;
+        }
+        .section-item li {
+            margin-bottom: 10px;
+        }
+        .section-item li a {
+            text-decoration: none;
+            color: #ffffff;
+            display: inline-block;
+            padding: 10px 20px;
+            border: 1px solid #3ca6a6;
+            border-radius: 8px;
+            background-color: #3ca6a6;
+        }
+        .centrado {
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <h1>Indice</h1>
-    <div class="section">
-        <div class="section-title">Usuarios</div>
-        <ul class="section-item">
-            <li><a href="/usuario">Ver Usuarios</a></li>
-            <li><a href="/usuario/agregar">Agregar Usuario</a></li>
-            <li><a href="/usuario/modificar">Modificar Usuario</a></li>
-            <li><a href="/usuario/eliminar">Eliminar Usuario</a></li>
-        </ul>
+    <div class="section-titleBig">
+      <h1>CLONBUSTER</h1>
     </div>
-    <div class="section">
-        <div class="section-title">Peliculas</div>
-        <ul class="section-item">
-            <li><a href="/pelicula">Ver Peliculas</a></li>
-            <li><a href="/pelicula/agregar">Agregar Pelicula</a></li>
-            <li><a href="/pelicula/modificar">Modificar Pelicula</a></li>
-            <li><a href="/pelicula/eliminar">Eliminar Pelicula</a></li>
-        </ul>
+    <div class="section-container">
+        <div class="section">
+            <div class="section-title">Usuarios</div>
+            <ul class="section-item">
+                <li><a href="/usuario">Ver Usuarios</a></li>
+                <li><a href="/usuario/agregar">Agregar Usuario</a></li>
+                <li><a href="/usuario/modificar">Modificar Usuario</a></li>
+                <li><a href="/usuario/eliminar">Eliminar Usuario</a></li>
+            </ul>
+        </div>
     </div>
-    <div class="section">
-        <div class="section-title">Rentas</div>
-        <ul class="section-item">
-            <li><a href="/renta">Ver Rentas</a></li>
-            <li><a href="/renta/agregar">Agregar Renta</a></li>
-            <li><a href="/renta/modificar">Modificar Renta</a></li>
-        </ul>
+    <div class="section-container">
+        <div class="section">
+            <div class="section-title">Películas</div>
+            <ul class="section-item">
+                <li><a href="/pelicula">Ver Peliculas</a></li>
+                <li><a href="/pelicula/agregar">Agregar Pelicula</a></li>
+                <li><a href="/pelicula/modificar">Modificar Pelicula</a></li>
+                <li><a href="/pelicula/eliminar">Eliminar Pelicula</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="section-container">
+        <div class="section">
+            <div class="section-title">Rentas</div>
+            <ul class="section-item">
+                <li><a href="/renta">Ver Rentas</a></li>
+                <li><a href="/renta/agregar">Agregar Renta</a></li>
+                <li><a href="/renta/modificar">Modificar Renta</a></li>
+            </ul>
+        </div>
     </div>
 </body>
 </html>
